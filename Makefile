@@ -14,6 +14,8 @@ SRC	=	$(D_SRC)main.c		\
 		$(D_SRC)score.c		\
 		$(D_SRC)game.c		\
 		$(D_SRC)direction.c	\
+		$(D_SRC)size_map.c	\
+		$(D_SRC)map_val.c	\
 		$(D_SRC)map.c
 
 OBJ	=	$(SRC:%.c=%.o)
@@ -28,7 +30,7 @@ TEST_LDFLAGS	=	$(LDFLAGS) -lcriterion
 
 TEST_CFLAGS	=	$(CFLAGS) --coverage
 
-TEST_MAIN	=	../tests/test_infin.c
+TEST_MAIN	=	tests/test.c
 
 all	:	$(NAME)
 
@@ -45,7 +47,7 @@ fclean	:	clean
 
 $(NAME): $(OBJ)
 	$(MAKE) -C lib/my
-	gcc -o $(NAME) $(OBJ) $(TEST_LDFLAGS) $(CFLAGS)
+	gcc -o $(NAME) $(OBJ) $(LDFLAGS) $(CFLAGS)
 	rm -f $(OBJ)
 
 re	:

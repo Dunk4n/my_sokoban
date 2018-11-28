@@ -44,11 +44,27 @@ void    step(char **map, int *pos, int dir)
     map[pos[0]][pos[1]] = ' ';
 }
 
+int     out(char **map, int *pos, int dir)
+{
+    int cd[][2] = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
+
+    if (pos[0] + cd[dir][0] >= 0 && map[pos[0] + cd[dir][0]] != 0 && pos[1] +
+cd[dir][1] < my_strlen(map[pos[0] + cd[dir][0]]) && pos[1] + cd[dir][1] >= 0) {
+        if (pos[0] + (cd[dir][0] * 2) >= 0 && map[pos[0] + (cd[dir][0] * 2)] !=
+0 && pos[1] + (cd[dir][1] * 2) < my_strlen(map[pos[0] + (cd[dir][0] * 2)]) &&
+pos[1] + (cd[dir][1] * 2) >= 0)
+            return (1);
+        return (0);
+    }
+    return (2);
+}
+
 void    direction(char **map, int *pos, int *mark, int dir)
 {
     int cd[][2] = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
 
-    if (map[pos[0] + cd[dir][0]][pos[1] + cd[dir][1]] == 'X') {
+    if (out(map, pos, dir) == 1 &&
+map[pos[0] + cd[dir][0]][pos[1] + cd[dir][1]] == 'X') {
         if (map[pos[0] + (cd[dir][0] * 2)][pos[1] + (cd[dir][1] * 2)] == ' ') {
             step(map, pos, dir);
             map[pos[0] + cd[dir][0]][pos[1] + cd[dir][1]] = 'X';
@@ -59,11 +75,10 @@ void    direction(char **map, int *pos, int *mark, int dir)
             map[pos[0]][pos[1]] = ' ';
             *mark -= 1;
             map[pos[0] + cd[dir][0]][pos[1] + cd[dir][1]] = '@';
-            return ;
         }
     }
-    if (map[pos[0] + cd[dir][0]][pos[1] + cd[dir][1]] == ' ' ||
-map[pos[0] + cd[dir][0]][pos[1] + cd[dir][1]] == 'O') {
+    if (out(map, pos, dir) != 2 && (map[pos[0] + cd[dir][0]][pos[1] +
+cd[dir][1]] == ' ' || map[pos[0] + cd[dir][0]][pos[1] + cd[dir][1]] == 'O')) {
         pos[0] += cd[dir][0];
         pos[1] += cd[dir][1];
     }

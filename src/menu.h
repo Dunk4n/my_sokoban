@@ -19,5 +19,7 @@ char    **get_map(char *str);
 int     game(int ac, char **av);
 void    display_map(char **map, int *pos);
 void    direction(char **map, int *pos, int *mark, int dir);
+int     size_map(char **map);
+int     map_val(char *str);
 
 #endif

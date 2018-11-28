@@ -14,9 +14,11 @@ int     if_box(char **map, int i, int j)
 {
     if (map[i][j] != 'X')
         return (2);
-    if (((map[i - 1][j] == '#' || map[i - 1][j] == '@') ||
-(map[i + 1][j] == '#' || map[i + 1][j] == '@')) && ((map[i][j - 1] == '#' ||
-map[i][j - 1] == '@') || (map[i][j + 1] == '#' || map[i][j + 1] == '@')))
+    if (((map[i - 1][j] == '#' || map[i - 1][j] == '@' ||
+map[i - 1][j] == 'X') || (map[i + 1][j] == '#' || map[i + 1][j] == '@' ||
+map[i + 1][j] == 'X')) && ((map[i][j - 1] == '#' || map[i][j - 1] == '@' ||
+map[i][j - 1] == 'X') || (map[i][j + 1] == '#' || map[i][j + 1] == '@' ||
+map[i][j + 1] == 'X')))
         return (1);
     return (0);
 }
@@ -57,7 +59,7 @@ int     level(char *str)
     while (mark > 0) {
         if (block(map) == 0)
             return (1);
-        display_map(map, pos);
+        (size_map(map) == 0) ? display_map(map, pos) : 0;
         dir = getch();
         if (dir == 32)
             reset(&map, &pos, &mark, str);
@@ -71,9 +73,10 @@ int     level(char *str)
 
 int     game(int ac, char **av)
 {
-    int lv = 0;
     int win = 0;
 
+    if (ac != 2 || map_val(av[1]) != 0)
+        return (84);
     initscr();
     noecho();
     cbreak();

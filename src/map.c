@@ -22,7 +22,7 @@ char    **get_map(char *str)
 
     fd = open(str, O_RDONLY);
     if (fd == -1)
-        return NULL;
+        return (NULL);
     stat(str, &st);
     buff = malloc(st.st_size + 1);
     size = read(fd, buff, st.st_size);
