@@ -72,18 +72,14 @@ int     level(char *str)
     return (0);
 }
 
-int     game(int ac, char **av)
+int     game(char *str)
 {
-    int win = 0;
-
-    if (ac != 2 || map_val(av[1]) != 0)
+    clear();
+    if (str == NULL)
+        return (game_no_map());
+    if (map_val(str) != 0)
         return (84);
-    initscr();
-    noecho();
-    cbreak();
     curs_set(false);
     keypad(stdscr, true);
-    win = level(av[1]);
-    endwin();
-    return (win);
+    return (level(str));
 }

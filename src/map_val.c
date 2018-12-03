@@ -13,19 +13,22 @@ int     map_val(char *str)
 {
     char    **map = get_map(str);
     int     bol = 0;
-    int     i = 0;
-    int     j = 0;
+    int     cnt[] = {0, 0, 0, 0, 0};
 
     if (map == NULL)
         return (1);
-    while (map[i] != 0 && bol == 0) {
-        j = 0;
-        while (map[i][j] != '\0' && bol == 0) {
-            bol += (map[i][j] == ' ' || map[i][j] == '\n' || map[i][j] == '#' ||
-map[i][j] == 'X' || map[i][j] == 'O' || map[i][j] == 'P') ? 0 : 1;
-            j++;
+    while (map[cnt[3]] != 0 && bol == 0) {
+        cnt[4] = 0;
+        while (map[cnt[3]][cnt[4]] != '\0' && bol == 0) {
+            bol += (map[cnt[3]][cnt[4]] == ' ' || map[cnt[3]][cnt[4]] == '\n' ||
+map[cnt[3]][cnt[4]] == '#' || map[cnt[3]][cnt[4]] == 'X' || map[cnt[3]][cnt[4]]
+== 'O' || map[cnt[3]][cnt[4]] == 'P') ? 0 : 1;
+            cnt[0] += ((map[cnt[3]][cnt[4]] == 'P') ? 1 : 0);
+            cnt[1] += ((map[cnt[3]][cnt[4]] == 'X') ? 1 : 0);
+            cnt[2] += ((map[cnt[3]][cnt[4]] == 'O') ? 1 : 0);
+            cnt[4]++;
         }
-        i++;
+        cnt[3]++;
     }
-    return (bol);
+    return ((cnt[0] != 1 || cnt[1] < cnt[2] || cnt[2] == 0) ? 1 : bol);
 }

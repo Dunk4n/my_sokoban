@@ -52,8 +52,9 @@ int     score(int sc)
     close(fd);
 }
 
-int     put_score()
+int     put_score(char *str)
 {
+    (void)str;
     clear();
     refresh();
     mvprintw(LINES / 2, COLS / 2 - my_strlen(my_itoa(score(-1)))
