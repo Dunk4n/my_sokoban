@@ -18,7 +18,7 @@ int     quit(char *str)
 void    upchoices(int *ch, int *res, char *str)
 {
     int (*fonc[])(char*) = {&game, &put_score, &quit};
-    char *choi[] = {"play", "score", "quit"};
+    char *choi[] = {"Play", "Score", "Quit"};
     int  i = 0;
     int  inc = 0;
 
@@ -36,8 +36,8 @@ choi[i]);
         *ch += 1;
     if (inc == 10)
         *res = fonc[*ch](str);
-    //*res = (fonc[*ch](str) == 0 && *ch == 0) ? 0 : 1;
 }
+//*res = (fonc[*ch](str) == 0 && *ch == 0) ? 0 : 1;
 
 void    menu(char *str)
 {

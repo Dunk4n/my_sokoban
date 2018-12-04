@@ -9,7 +9,8 @@
 #include "my.h"
 #include "menu.h"
 
-const char *name_map[3] = {"map/map1", "map/map2", "map/map3"};
+const char *name_map[5] = {"map/map1", "map/map2", "map/map3", "map/map4",
+"map/map5"};
 
 int     main(int ac, char **av)
 {

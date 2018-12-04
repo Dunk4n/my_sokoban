@@ -8,7 +8,7 @@
 #ifndef MENU_H
 #define MENU_H
 
-const char *name_map[3];
+const char *name_map[5];
 
 void    menu(char *str);
 int     score(int sc);
