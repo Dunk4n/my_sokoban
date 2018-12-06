@@ -69,6 +69,8 @@ int     level(char *str)
         refresh();
         clear();
     }
+    display_map(map, pos);
+    getch();
     return (0);
 }
 
