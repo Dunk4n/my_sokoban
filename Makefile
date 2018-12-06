@@ -15,7 +15,6 @@ SRC	=	$(D_SRC)main.c		\
 		$(D_SRC)direction.c	\
 		$(D_SRC)size_map.c	\
 		$(D_SRC)map_val.c	\
-		$(D_SRC)test_map.c	\
 		$(D_SRC)map.c
 
 OBJ	=	$(SRC:%.c=%.o)
