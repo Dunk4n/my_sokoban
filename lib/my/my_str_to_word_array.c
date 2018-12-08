@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-static int     charword(char const *str, int n, int nl, char ch)
+char    charword(char const *str, int n, int nl, char ch)
 {
     int i = 0;
     int sp = 1;
@@ -28,7 +28,7 @@ static int     charword(char const *str, int n, int nl, char ch)
     return ('\0');
 }
 
-static int     nbchar(char const *str, int n, char ch)
+int     nbchar(char const *str, int n, char ch)
 {
     int i = 0;
     int sp = 1;
@@ -47,7 +47,7 @@ static int     nbchar(char const *str, int n, char ch)
     return (let);
 }
 
-static int     nbword(char const *str, char ch)
+int     nbword(char const *str, char ch)
 {
     int i = 0;
     int sp = 1;
@@ -66,20 +66,20 @@ static int     nbword(char const *str, char ch)
 
 char    **my_str_to_word_array(char const *str, char ch)
 {
-    int i = 1;
-    int j = 1;
+    int i = 0;
+    int j = 0;
     char **tab = malloc(sizeof(char*) * (nbword(str, ch) + 1));
 
-    while (i - 1 < nbword(str, ch)) {
-        tab[i - 1] = malloc(nbchar(str, i, ch));
-        j = 1;
-        while (j - 1 < nbchar(str, i, ch)) {
-            tab[i - 1][j - 1] = charword(str, i, j, ch);
+    while (i < nbword(str, ch)) {
+        tab[i] = malloc(sizeof(char) * (nbchar(str, i + 1, ch) + 1));
+        j = 0;
+        while (j < nbchar(str, i + 1, ch)) {
+            tab[i][j] = charword(str, i + 1, j + 1, ch);
             j++;
         }
-        tab[i - 1][j - 1] = '\0';
+        tab[i][j] = '\0';
         i++;
     }
-    tab[i - 1] = 0;
+    tab[i] = 0;
     return (tab);
 }

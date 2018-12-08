@@ -15,7 +15,7 @@ int     if_box(char **map, int i, int j)
     if (map[i][j] != 'X')
         return (2);
     if (((i - 1 < 0 || map[i - 1][j] == '#' || map[i - 1][j] == '@' ||
-map[i - 1][j] == 'X') || (i + 1 > nblig(map) || map[i + 1][j] == '#' ||
+map[i - 1][j] == 'X') || (i + 1 > nblig(map) - 1 || map[i + 1][j] == '#' ||
 map[i + 1][j] == '@' || map[i + 1][j] == 'X')) && ((j - 1 < 0 ||
 map[i][j - 1] == '#' || map[i][j - 1] == '@' || map[i][j - 1] == 'X') ||
 (j + 1 >= my_strlen(map[i]) || map[i][j + 1] == '#' || map[i][j + 1] == '@' ||
@@ -58,19 +58,18 @@ int     level(char *str)
 
     map[pos[0]][pos[1]] = ' ';
     while (mark > 0) {
-        if (block(map) == 0)
+        if (block(map) == 0) {
+            display_map(map, pos);
             return (1);
+        }
         (size_map(map) == 0) ? display_map(map, pos) : 0;
         dir = getch();
-        if (dir == 32)
-            reset(&map, &pos, &mark, str);
-        else
-            (dir >= 2 && dir <= 5) ? direction(map, pos, &mark, dir - 2) : 0;
+        (dir == 32) ? reset(&map, &pos, &mark, str) : 0;
+        (dir >= 2 && dir <= 5) ? direction(map, pos, &mark, dir - 2) : 0;
         refresh();
         clear();
     }
     display_map(map, pos);
-    getch();
     return (0);
 }
 
@@ -86,6 +85,7 @@ int     game(int ac, char **av)
     curs_set(false);
     keypad(stdscr, true);
     win = level(av[1]);
+    getch();
     endwin();
     return (win);
 }
