@@ -22,5 +22,15 @@ void    direction(char **map, int *pos, int *mark, int dir);
 int     size_map(char **map);
 int     map_val(char *str);
 int     nblig(char **map);
+int     *player(char *str);
+int     nb_mark(char *str);
+void    step(char **map, int *pos, int dir, int *mark);
+int     out(char **map, int *pos, int dir);
+void    char_map(char **map, int *pos, int i, int j);
+void    display_map(char **map, int *pos);
+int     if_box(char **map, int i, int j);
+int     block(char **map);
+void    reset(char ***map, int **pos, int *mark, char *str);
+int     level(char *str);
 
 #endif

@@ -10,6 +10,7 @@
 
 # include <unistd.h>
 # include <stdarg.h>
+# include "menu.h"
 
 # define cmp(x, y, z) my_strncmp(x, y, z)
 # define ABS(x) (((x) < 0) ? -(x) : (x))

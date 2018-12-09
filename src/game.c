@@ -12,7 +12,7 @@
 
 int     if_box(char **map, int i, int j)
 {
-    if (map[i][j] != 'X')
+    if (map[i][j] != 'X' && map[i][j] != '@')
         return (2);
     if (((i - 1 < 0 || map[i - 1][j] == '#' || map[i - 1][j] == '@' ||
 map[i - 1][j] == 'X') || (i + 1 > nblig(map) - 1 || map[i + 1][j] == '#' ||
@@ -85,7 +85,6 @@ int     game(int ac, char **av)
     curs_set(false);
     keypad(stdscr, true);
     win = level(av[1]);
-    getch();
     endwin();
     return (win);
 }
